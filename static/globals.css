@@ -54,15 +54,33 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.bottom-container {
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    text-align: center;
+    background-color: #1a1919;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #222222;
+
+    /* Animation setup */
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
 .bottom-container.hidden {
-    display: none;
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none; /* prevents clicking while hidden */
 }
 
 .toggle-nav-btn {
     position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(0.8);
     width: 48px;
     height: 48px;
     background-color: #3a3a3a;
@@ -72,8 +90,21 @@ body {
     font-size: 18px;
     cursor: pointer;
     z-index: 999;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    /* animation */
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s ease;
+}
+
+/* visible state */
+.toggle-nav-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
 }
 
 .toggle-nav-btn:hover {

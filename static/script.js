@@ -18,13 +18,13 @@ function updateClock() {
 function toggleNav() {
     const navContainer = document.getElementById('nav-container');
     const toggleBtn = document.getElementById('toggle-btn');
-    
+
     navContainer.classList.toggle('hidden');
-    
+
     if (navContainer.classList.contains('hidden')) {
-        toggleBtn.style.display = 'block';
+        toggleBtn.classList.add('show');
     } else {
-        toggleBtn.style.display = 'none';
+        toggleBtn.classList.remove('show');
     }
 }
 
