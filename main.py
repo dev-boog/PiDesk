@@ -24,6 +24,30 @@ def open_discord():
         timeout=2
     )
     return render_template('system.html')
+@app.route("/system/steam")
+def open_steam():
+    requests.post(
+        f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
+        json={"action": "steam"},
+        timeout=2
+    )
+    return render_template('system.html')
+@app.route("/system/zen")
+def open_zen():
+    requests.post(
+        f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
+        json={"action": "zen"},
+        timeout=2
+    )
+    return render_template('system.html')
+@app.route("/system/vscode")
+def open_vscode():
+    requests.post(
+        f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
+        json={"action": "vscode"},
+        timeout=2
+    )
+    return render_template('system.html')
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=1200, debug=True)
