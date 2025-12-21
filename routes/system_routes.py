@@ -14,7 +14,7 @@ def system():
 @system_routes.route("/launch/<app_name>")
 def launch_app(app_name):
     if app_name in APP_PATHS:
-        launch_program(APP_PATHS[app_name])
+        launch_program(app_name)  
     else:
         print(f"[ERROR] Unknown app: {app_name}")
     return render_template('system.html')
