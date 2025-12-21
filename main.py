@@ -1,66 +1,15 @@
 from flask import Flask, render_template
-
-import socket
-import requests
-
-WINDOWS_PC_IP = "192.168.1.142"
-WINDOWS_PORT = 42069
+from routes.system_routes import system_routes  
 
 app = Flask(__name__)
 
+# System Blueprint Registration
+app.register_blueprint(system_routes)
+
+# Home page
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/system')
-def system():
-    return render_template('system.html')
-
-@app.route("/system/discord")
-def open_discord():
-    try:
-        requests.post(
-            f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
-            json={"action": "discord"},
-            timeout=2
-        )
-    except requests.exceptions.RequestException:
-        pass
-    return render_template('system.html')
-@app.route("/system/steam")
-def open_steam():
-    try:
-        requests.post(
-            f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
-            json={"action": "steam"},
-            timeout=2
-        )
-    except requests.exceptions.RequestException:
-        pass
-    return render_template('system.html')
-@app.route("/system/zen")
-def open_zen():
-    try:
-        requests.post(
-            f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
-            json={"action": "zen"},
-            timeout=2
-        )
-    except requests.exceptions.RequestException:
-        pass
-    return render_template('system.html')
-
-@app.route("/system/vscode")
-def open_vscode():
-    try:
-        requests.post(
-            f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}/command",
-            json={"action": "vscode"},
-            timeout=2
-        )
-    except requests.exceptions.RequestException:
-        pass
-    return render_template('system.html')
-
-if __name__ == '__main__':  
+if __name__== '__main__':
     app.run(host='0.0.0.0', port=1200, debug=True)

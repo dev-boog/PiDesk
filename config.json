@@ -1,0 +1,15 @@
+{
+    "connection": {
+        "WINDOWS_PC_IP": "192.168.1.142",
+        "WINDOWS_PC_PORT": 42069
+    },
+
+    "application_shortcuts": {
+        "discord": "C:/Users/2whyt/AppData/Local/Discord/Update.exe --processStart Discord.exe",
+        "steam": "C:/Program Files (x86)/Steam/steam.exe",
+        "zen": "c:/Program Files/Zen Browser/zen.exe",
+        "vscode": "C:/Users/2whyt/AppData/Local/Programs/Microsoft VS Code/Code.exe",
+        "spotify": "spotify",
+        "notepad": "notepad"  
+    }
+}
