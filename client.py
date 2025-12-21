@@ -1,29 +1,39 @@
-import subprocess
-import os
-import platform
+import requests
+from config import WINDOWS_PC_IP, WINDOWS_PORT
+
+BASE_URL = f"http://{WINDOWS_PC_IP}:{WINDOWS_PORT}"
 
 def launch_program(path):
+    """
+    Ask the Windows PC to launch a program.
+    `path` can be a string or list from APP_PATHS
+    """
     try:
-        if isinstance(path, list):
-            command = f'explorer "{path[1]}"'  
-            subprocess.Popen(command, shell=True)
-        elif isinstance(path, str):
-            if platform.system() == "Windows":
-                try:
-                    os.startfile(path)
-                except OSError:
-                    subprocess.Popen(path, shell=True)
-            else:
-                subprocess.Popen([path])
-        print(f"[INFO] Launched: {path}")
+        response = requests.post(
+            f"{BASE_URL}/launch_program",
+            json={"file_path": path},
+            timeout=5
+        )
+        if response.status_code == 200:
+            print(f"[INFO] Launched: {path}")
+        else:
+            print(f"[ERROR] Failed to launch: {response.text}")
     except Exception as e:
-        print(f"[ERROR] Failed to launch {path}: {e}")
-
-
+        print(f"[ERROR] Could not contact Windows PC: {e}")
 
 def send_command(command_name):
     """
-    Sends system commands (shutdown, restart, volume_mute).
-    You need to implement actual Windows commands here.
+    Send system commands to the Windows PC.
     """
-    print(f"[INFO] Command sent: {command_name}")
+    try:
+        response = requests.post(
+            f"{BASE_URL}/send_command",
+            json={"command": command_name},
+            timeout=5
+        )
+        if response.status_code == 200:
+            print(f"[INFO] Command sent: {command_name}")
+        else:
+            print(f"[ERROR] Failed to send command: {response.text}")
+    except Exception as e:
+        print(f"[ERROR] Could not contact Windows PC: {e}")
