@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-zinc-950 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav id="navigation" class="w-full bg-zinc-900 p-3 rounded-sm border border-zinc-800 flex justify-between">
+        <!-- Nav Items -->
+        <div class="flex gap-1 justify-start items-start text-zinc-300">
+            <!-- Clock -->
+            <div id="navigation-clock-btn" class="bg-zinc-700 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <button><i class="bi bi-alarm"></i></button>
+            </div> 
+            <!-- PC Controls -->
+            <div id="navigation-pcctrls-btn" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <button><i class="bi bi-pc-display"></i></button>
+            </div> 
+        </div>
+
+        <!-- Widgets -->
+        <div class="flex gap-1 justify-end items-end">
+            <!-- Time Widget -->
+            <div id="navigation-time" class="bg-zinc-800 w-fit px-3 py-1 rounded-sm border border-zinc-700">
+                <p class="text-zinc-100 text-sm font-semibold">18:45:45</p>
+            </div>  
+            <!-- Day Widget -->
+            <div id="navigation-day" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <p class="text-zinc-100 text-sm font-semibold">Monday</p>
+            </div>  
+            <!-- Date Widget -->
+            <div id="navigation-date" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <p class="text-zinc-100 text-sm font-semibold">29 Dec</p>
+            </div>
+        </div>    
+    </nav>
+
+    <!-- Content -->
+    <section class="flex-1 flex items-center justify-center">
+        
+    </section>
+</body>
+</html>
