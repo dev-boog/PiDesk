@@ -18,6 +18,7 @@
     <nav id="navigation" class="w-full p-3 rounded-sm flex justify-between relative z-10">
         <div class="flex gap-1 justify-start items-start text-zinc-300">
             <div id="navigation-clock-btn" class="bg-zinc-700 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+<<<<<<< HEAD
                 <a href="{{ url_for('clock.clock') }}"><i class="bi bi-alarm"></i></a>
             </div> 
             <div id="navigation-system-btn" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
@@ -25,11 +26,18 @@
             </div> 
             <div id="navigation-settings-btn" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
                 <a href="{{ url_for('settings.settings') }}"><i class="bi bi-gear-fill"></i></a>
+=======
+                <button><i class="bi bi-alarm"></i></button>
+            </div> 
+            <div id="navigation-pcctrls-btn" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <button><i class="bi bi-pc-display"></i></button>
+>>>>>>> 44755a2841f3d95559cf09f9789b5fc29a5d1796
             </div> 
         </div>
 
         <!-- Widgets -->
         <div class="flex gap-1 justify-end items-end">
+<<<<<<< HEAD
             <div id="navigation-time" data-widget class="bg-zinc-800 w-fit px-3 py-1 rounded-sm border border-zinc-700">
                 <p id="nav-time" class="text-zinc-100 text-sm font-semibold">...</p>
             </div>  
@@ -40,6 +48,18 @@
                 <p id="nav-date" class="text-zinc-100 text-sm font-semibold">...</p>
             </div>
             <button id="navigation-toggle-particles" data-widget onclick="toggleParticles()" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700 text-zinc-100 text-sm font-semibold cursor-pointer hover:bg-zinc-700">
+=======
+            <div id="navigation-time" class="bg-zinc-800 w-fit px-3 py-1 rounded-sm border border-zinc-700">
+                <p id="nav-time" class="text-zinc-100 text-sm font-semibold">...</p>
+            </div>  
+            <div id="navigation-day" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <p id="nav-day" class="text-zinc-100 text-sm font-semibold">...</p>
+            </div>  
+            <div id="navigation-date" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700">
+                <p id="nav-date" class="text-zinc-100 text-sm font-semibold">...</p>
+            </div>
+            <button id="navigation-toggle-particles" onclick="toggleParticles()" class="bg-zinc-800 w-fit px-2 py-1 rounded-sm border border-zinc-700 text-zinc-100 text-sm font-semibold cursor-pointer hover:bg-zinc-700">
+>>>>>>> 44755a2841f3d95559cf09f9789b5fc29a5d1796
                 <i class="bi bi-stars"></i>
             </button>
         </div>    
@@ -71,8 +91,12 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <script src="../static/global.js"></script>
     <script src="../static/clock.js"></script>      
+=======
+    <script src="../static/clock.js"></script>
+>>>>>>> 44755a2841f3d95559cf09f9789b5fc29a5d1796
     <script src="../static/particles-js_config.js"></script>
 </body>
 </html>
