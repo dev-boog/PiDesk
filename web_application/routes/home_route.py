@@ -3,15 +3,16 @@ from datetime import datetime
 import requests
 import json
 
-clock_routes = Blueprint("clock", __name__)
+home_routes = Blueprint("home", __name__)
 
-# Clock route | For getting current time, see clock.js
-@clock_routes.route('/clock')
-def clock():
-    return render_template('clock.html')
+# Home route | For getting current time, see clock.js
+@home_routes.route('/')
+@home_routes.route('/home')
+def home():
+    return render_template('home.html')
 
 # Update the wether settings every hour | hx-get="/update_weather"
-@clock_routes.route('/update_weather')
+@home_routes.route('/update_weather')
 def update_weather():
     with open('api_keys.json') as f:
         keys = json.load(f)
@@ -41,5 +42,4 @@ def update_weather():
             '''
     except Exception as e:
         print(f"Weather API error: {e}")
-
     pass    

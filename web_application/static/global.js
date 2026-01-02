@@ -11,8 +11,8 @@ function toggleWidget(widget_id, button) {
     // Apply to widget and button
     widget.style.display = isVisible ? 'none' : '';
     if (button) {
-        button.classList.toggle('bg-emerald-700', !isVisible);
-        button.classList.toggle('bg-zinc-700', isVisible);
+        button.classList.toggle('bg-violet-500/20', !isVisible);
+        button.classList.toggle('bg-white/5', isVisible);
     }
 }
 
@@ -27,8 +27,8 @@ function applyWidgetStates() {
     document.querySelectorAll('[data-toggle]').forEach(button => {
         const widget_id = button.dataset.toggle;
         const isHidden = localStorage.getItem('widget_' + widget_id) === 'hidden';
-        button.classList.toggle('bg-emerald-700', !isHidden);
-        button.classList.toggle('bg-zinc-700', isHidden);
+        button.classList.toggle('bg-violet-500/20', !isHidden);
+        button.classList.toggle('bg-white/5', isHidden);
     });
 }
 

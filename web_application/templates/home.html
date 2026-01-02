@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>settings.html</title>
+    <title>Document</title>
 
     <!-- tailwindcss -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -23,13 +23,13 @@
     <!-- Navigation -->
     <nav id="navigation" class="w-full px-3 py-1.5 flex justify-between relative z-10 bg-[#16162a]/90 backdrop-blur-md border-b border-violet-500/20">
         <div class="flex gap-1.5 items-center">
-            <div id="navigation-home-btn" class="px-2 py-1 rounded-md text-white/60 text-sm">
+            <div id="navigation-home-btn" class="bg-violet-500/20 px-2 py-1 rounded-md border border-violet-500/40 text-violet-300 text-sm">
                 <a href="{{ url_for('home.home') }}"><i class="bi bi-house-fill"></i></a>
             </div> 
             <div id="navigation-system-btn" class="px-2 py-1 rounded-md text-white/60 text-sm">
                 <a href="{{ url_for('system.system') }}"><i class="bi bi-pc-display"></i></a>
             </div> 
-            <div id="navigation-settings-btn" class="bg-violet-500/20 px-2 py-1 rounded-md border border-violet-500/40 text-violet-300 text-sm">
+            <div id="navigation-settings-btn" class="px-2 py-1 rounded-md text-white/60 text-sm">
                 <a href="{{ url_for('settings.settings') }}"><i class="bi bi-gear-fill"></i></a>
             </div> 
         </div>
@@ -53,21 +53,33 @@
 
     <!-- Content -->
     <section class="flex-1 flex items-center justify-center relative z-10">
-        <!-- Navigation settings -->
-        <div class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white">
-            <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Navigation Settings</p>
-            <div class="flex gap-2 flex-wrap">
-                <button data-toggle="navigation-time" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-time', this)">Time Widget</button>
-                <button data-toggle="navigation-day" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-day', this)">Day Widget</button>
-                <button data-toggle="navigation-date" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-date', this)">Date Widget</button>
-                <button data-toggle="navigation-toggle-particles" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-toggle-particles', this)">Particles Toggle</button>
+        <div class="flex flex-col items-center gap-5">
+            <div id="clock-content" class="text-center">
+                <h1 id="clock-time" class="text-4xl font-semibold text-white tracking-wide">Loading time...</h1>
+                <h1 id="clock-date" class="text-white mt-1 text-base">Loading date...</h1>
+            </div>
+
+            <!-- Widget cards - Location, temperature, condition -->
+            <div class="flex gap-3" hx-get="/update_weather" hx-trigger="load, every 1800s" hx-swap="none">
+                <div id="weather-location" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
+                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Location</p>
+                    <p class="text-base font-medium text-white">Loading...</p>
+                </div>
+                <div id="weather-temp" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
+                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Temperature</p>
+                    <p class="text-base font-medium text-white">Loading...</p>
+                </div>
+                <div id="weather-condition" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
+                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Condition</p>
+                    <p class="text-base font-medium text-white">Loading...</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- JS Backend -->
     <script src="../static/notification.js"></script>
-    <script src="../static/navigation.js"></script>
+    <script src="../static/global.js"></script>
     <script src="../static/clock.js"></script>      
     <script src="../static/particles-js_config.js"></script>
 </body>
