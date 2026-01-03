@@ -2,9 +2,10 @@ from flask import Blueprint, render_template
 from datetime import datetime
 from config.config_manager import get_application_shortcuts
 
+import connection.concection
+
 system_routes = Blueprint("system", __name__)
 
-# Fetch application shortcuts for system settings page
 @system_routes.route('/fetch_application_shortcuts')
 def fetch_application_shortcuts():
     shortcuts = get_application_shortcuts()
@@ -21,4 +22,5 @@ def fetch_application_shortcuts():
 
 @system_routes.route('/system')
 def system():
-    return render_template('system.html')
+    connection_status = connection.concection.get_connection_status()
+    return render_template('system.html', connection_status=connection_status)

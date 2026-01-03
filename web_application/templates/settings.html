@@ -51,17 +51,20 @@
         </div>    
     </nav>
 
-    <!-- Content -->
-    <section class="flex-1 flex items-center justify-center relative z-10">
-        <!-- Navigation settings -->
-        <div class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white">
-            <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Navigation Settings</p>
-            <div class="flex gap-2 flex-wrap">
-                <button data-toggle="navigation-time" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-time', this)">Time Widget</button>
-                <button data-toggle="navigation-day" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-day', this)">Day Widget</button>
-                <button data-toggle="navigation-date" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-date', this)">Date Widget</button>
-                <button data-toggle="navigation-toggle-particles" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-toggle-particles', this)">Particles Toggle</button>
+    <section class="flex-1 relative z-10 p-3 overflow-auto"> 
+        <div class="columns-1 gap-2 space-y-2">
+            <!-- Navigation Settings Column -->
+            <div class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white break-inside-avoid">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Navigation Settings</p>
+                <div class="flex gap-2 flex-wrap">
+                    <button data-toggle="navigation-time" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-time', this)">Time Widget</button>
+                    <button data-toggle="navigation-day" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-day', this)">Day Widget</button>
+                    <button data-toggle="navigation-date" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-date', this)">Date Widget</button>
+                    <button data-toggle="navigation-toggle-particles" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200" onclick="toggleWidget('navigation-toggle-particles', this)">Particles Toggle</button>
+                </div>
             </div>
+            
+            <!-- Add more columns here as needed -->
         </div>
     </section>
 

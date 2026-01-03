@@ -51,28 +51,28 @@
         </div>    
     </nav>
 
-    <!-- Content -->
-    <section class="flex-1 flex items-center justify-center relative z-10">
-        <div class="flex flex-col items-center gap-5">
-            <div id="clock-content" class="text-center">
+    <section class="flex-1 relative z-10 p-3 overflow-auto"> 
+        <div class="columns-2 gap-2 space-y-2">
+            <div class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white break-inside-avoid">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Clock</p>
                 <h1 id="clock-time" class="text-4xl font-semibold text-white tracking-wide">Loading time...</h1>
                 <h1 id="clock-date" class="text-white mt-1 text-base">Loading date...</h1>
             </div>
 
-            <!-- Widget cards - Location, temperature, condition -->
-            <div class="flex gap-3" hx-get="/update_weather" hx-trigger="load, every 1800s" hx-swap="none">
-                <div id="weather-location" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
-                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Location</p>
-                    <p class="text-base font-medium text-white">Loading...</p>
-                </div>
-                <div id="weather-temp" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
-                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Temperature</p>
-                    <p class="text-base font-medium text-white">Loading...</p>
-                </div>
-                <div id="weather-condition" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 w-36">
-                    <p class="text-[10px] text-white/40 uppercase tracking-wider">Condition</p>
-                    <p class="text-base font-medium text-white">Loading...</p>
-                </div>
+            <div id="weather-location" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white break-inside-avoid" hx-get="/update_weather" hx-trigger="load, every 1800s" hx-swap="none">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Location</p>
+                <p class="text-base font-medium text-white">Loading...</p>
+            </div>
+
+            <div id="weather-temp" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white break-inside-avoid">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Temperature</p>
+                <p class="text-base font-medium text-white">Loading...</p>
+            </div>
+
+            <div id="weather-condition" class="bg-[#1a1a2e]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 text-white break-inside-avoid">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider mb-3">Condition</p>
+                <p class="text-base font-medium text-white">Loading...</p>
+            </div>
             </div>
         </div>
     </section>

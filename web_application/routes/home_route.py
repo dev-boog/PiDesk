@@ -29,15 +29,15 @@ def update_weather():
             return f'''
             <div id="weather-location" hx-swap-oob="innerHTML">
                 <p class="text-sm text-zinc-400">Location</p>
-                <p class="text-lg font-semibold">{location}</p>
+                <p class="text-base font-medium text-white">{location}</p>
             </div>
             <div id="weather-temp" hx-swap-oob="innerHTML">
                 <p class="text-sm text-zinc-400">Temperature</p>
-                <p class="text-lg font-semibold">{temp_c}°C</p>
+                <p class="text-base font-medium text-white">{temp_c}°C</p>
             </div>
             <div id="weather-condition" hx-swap-oob="innerHTML">
                 <p class="text-sm text-zinc-400">Condition</p>
-                <p class="text-lg font-semibold">{condition}</p>
+                <p class="text-base font-medium text-white">{condition}</p>
             </div>
             '''
     except Exception as e:
