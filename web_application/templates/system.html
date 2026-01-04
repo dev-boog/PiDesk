@@ -24,15 +24,15 @@
     <!-- Navigation -->
     <nav id="navigation" class="w-full px-3 py-1.5 flex justify-between relative z-10 bg-[#16162a]/90 backdrop-blur-md border-b border-violet-500/20">
         <div class="flex gap-1.5 items-center">
-            <div id="navigation-home-btn" class="px-3 py-2 rounded-md text-white/60 text-sm">
-                <a href="{{ url_for('home.home') }}"><i class="bi bi-house-fill"></i></a> <!-- Home -->
-            </div> 
-            <div id="navigation-system-btn" class="bg-violet-500/20 px-3 py-2 rounded-md border border-violet-500/40 text-violet-300 text-sm">
-                <a href="{{ url_for('system.system') }}"><i class="bi bi-pc-display"></i></a> <!-- System -->
-            </div> 
-            <div id="navigation-settings-btn" class="px-3 py-2 rounded-md text-white/60 text-sm">
-                <a href="{{ url_for('settings.settings') }}"><i class="bi bi-gear-fill"></i></a> <!-- Settings -->
-            </div> 
+            <a id="navigation-home-btn" href="{{ url_for('home.home') }}" class="px-4 py-3 rounded-md text-white/60 text-sm touch-manipulation select-none">
+                <i class="bi bi-house-fill pointer-events-none"></i>
+            </a> 
+            <a id="navigation-system-btn" href="{{ url_for('system.system') }}" class="bg-violet-500/20 px-4 py-3 rounded-md border border-violet-500/40 text-violet-300 text-sm touch-manipulation select-none">
+                <i class="bi bi-pc-display pointer-events-none"></i>
+            </a> 
+            <a id="navigation-settings-btn" href="{{ url_for('settings.settings') }}" class="px-4 py-3 rounded-md text-white/60 text-sm touch-manipulation select-none">
+                <i class="bi bi-gear-fill pointer-events-none"></i>
+            </a> 
         </div>
 
         <!-- Widgets -->
