@@ -1,12 +1,7 @@
 {
-    "discord":
+    "zen":
     {
-        "display_name": "Discord",
-        "file_path": "C:/Users/2whyt/AppData/Local/Discord/Update.exe"
-    },
-    "spotify":
-    {
-        "display_name": "Spotify",
-        "file_path": "C:/Users/2whyt/AppData/Roaming/Spotify/Spotify.exe"
+        "display_name": "Zen",
+        "file_path": "C:/Program Files/Zen Browser/zen.exe"
     }
 }

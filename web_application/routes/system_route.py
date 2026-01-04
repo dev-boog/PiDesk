@@ -2,9 +2,15 @@ from flask import Blueprint, render_template
 from datetime import datetime
 from config.config_manager import get_application_shortcuts
 
-import connection.concection
-
+from connection.concection import *
 system_routes = Blueprint("system", __name__)
+
+@system_routes.route('/system/launch_application/<path:file_path>', methods=['POST'])
+def launch_application(file_path):
+    if is_connected():
+        send_message(f'LAUNCH_APP::{file_path}')
+    else:
+        pass
 
 @system_routes.route('/fetch_application_shortcuts')
 def fetch_application_shortcuts():
@@ -14,7 +20,7 @@ def fetch_application_shortcuts():
         display_name = app['display_name']
         file_path = app['file_path'].replace('\\', '\\\\').replace("'", "\\'")
         shortcut_html += f'''
-        <button onclick="launchApplication('{file_path}')" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200 cursor-pointer">
+        <button hx-post="/system/launch_application/{file_path}" hx-target="this" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200 cursor-pointer">
             {display_name}
         </button>
         '''
@@ -22,5 +28,5 @@ def fetch_application_shortcuts():
 
 @system_routes.route('/system')
 def system():
-    connection_status = connection.concection.get_connection_status()
+    connection_status = get_connection_status()
     return render_template('system.html', connection_status=connection_status)
