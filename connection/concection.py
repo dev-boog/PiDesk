@@ -7,7 +7,8 @@ PORT = 5676
 conn = None
 server_socket = None
 connected = False
-connection_status = "disconnected"  
+connection_status = "disconnected"
+_listener_running = False  
 
 def get_connection_status():
     return connection_status
@@ -44,44 +45,53 @@ def send_message(message):
 
 
 def _connection_listener():
-    global conn, connected, connection_status, server_socket
+    global conn, connected, connection_status, server_socket, _listener_running
 
+    _listener_running = True
+    
     try:
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server_socket.bind((HOST, PORT))
         server_socket.listen(1)
-        server_socket.settimeout(1.0)  # Allow periodic checking for shutdown
+        server_socket.settimeout(1.0)  
 
         connection_status = "waiting"
         print(f"Waiting for PC connection on port {PORT}...")
         
-        while not connected:
-            try:
-                conn, addr = server_socket.accept()
-                print(f"Connected to {addr}")
-                connected = True
-                connection_status = "connected"
-                threading.Thread(target=receive_messages, args=(conn,), daemon=True).start()
-            except socket.timeout:
-                continue  # Keep waiting
-            except OSError:
-                break  # Socket was closed
+        while _listener_running:
+            if not connected:
+                connection_status = "waiting"
+                try:
+                    conn, addr = server_socket.accept()
+                    print(f"Connected to {addr}")
+                    connected = True
+                    connection_status = "connected"
+                    threading.Thread(target=receive_messages, args=(conn,), daemon=True).start()
+                except socket.timeout:
+                    continue  
+                except OSError:
+                    break  
+            else:
+                import time
+                time.sleep(0.5)
 
     except Exception as e:
         print(f"Connection failed: {e}")
         connection_status = "failed"
+    finally:
+        _listener_running = False
 
 
 def start_connection():
-    global connection_status
+    global connection_status, _listener_running
 
     if connected:
         print("Already connected")
         return
 
-    if connection_status == "waiting":
-        print("Already waiting for connection")
+    if _listener_running:
+        print("Listener already running")
         return
 
     threading.Thread(target=_connection_listener, daemon=True).start()
