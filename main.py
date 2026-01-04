@@ -3,6 +3,7 @@ import sys
 import threading
 from werkzeug.serving import make_server
 from web_application.app import app
+from connection.concection import start_connection
 
 PORT = 5420
 server = None
@@ -24,6 +25,9 @@ def run_flask():
 if __name__ == '__main__':
     signal.signal(signal.SIGTERM, shutdown_server)
     signal.signal(signal.SIGINT, shutdown_server)
+    
+    # Start the socket server for PC connection
+    start_connection()
     
     try:
         run_flask()
