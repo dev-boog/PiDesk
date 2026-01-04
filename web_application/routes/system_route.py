@@ -12,9 +12,9 @@ def fetch_application_shortcuts():
     shortcut_html = ""
     for key, app in shortcuts.items():
         display_name = app['display_name']
-        file_path = app['file_path']
+        file_path = app['file_path'].replace('\\', '\\\\').replace("'", "\\'")
         shortcut_html += f'''
-        <button onclick="', '{file_path}')" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200 cursor-pointer">
+        <button onclick="launchApplication('{file_path}')" class="bg-violet-500/20 border border-violet-500/30 rounded-lg px-3 py-1.5 text-xs font-medium text-violet-200 cursor-pointer">
             {display_name}
         </button>
         '''

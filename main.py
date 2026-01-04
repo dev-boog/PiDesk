@@ -1,17 +1,33 @@
+import signal
+import sys
 import threading
+from werkzeug.serving import make_server
 from web_application.app import app
 
+PORT = 5420
+server = None
+shutdown_event = threading.Event()
+
+def shutdown_server(signum=None, frame=None):
+    if not shutdown_event.is_set():
+        shutdown_event.set()
+        print("\nShutting down server...")
+        if server:
+            threading.Thread(target=server.shutdown, daemon=True).start()
+
 def run_flask():
-    app.run(host='0.0.0.0', port=5420, debug=False, use_reloader=False)
+    global server
+    server = make_server('0.0.0.0', PORT, app, threaded=True)
+    print(f"Flask server started on http://localhost:{PORT}")
+    server.serve_forever()
 
 if __name__ == '__main__':
-    flask_thread = threading.Thread(target=run_flask, daemon=True)
-    flask_thread.start()
-    
-    print("Flask server started on http://localhost:5420")
+    signal.signal(signal.SIGTERM, shutdown_server)
+    signal.signal(signal.SIGINT, shutdown_server)
     
     try:
-        while True:
-            pass  
+        run_flask()
     except KeyboardInterrupt:
-        print("\nShutting down...")
+        shutdown_server()
+    
+    print("Server stopped.")

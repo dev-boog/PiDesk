@@ -5,8 +5,9 @@ HOST = "0.0.0.0"
 PORT = 5676
 
 conn = None
+server_socket = None
 connected = False
-connection_status = "disconnected"  # "disconnected", "waiting", "connected", "failed"
+connection_status = "disconnected"  
 
 def get_connection_status():
     return connection_status
@@ -43,24 +44,29 @@ def send_message(message):
 
 
 def _connection_listener():
-    global conn, connected, connection_status
+    global conn, connected, connection_status, server_socket
 
     try:
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        server.bind((HOST, PORT))
-        server.listen(1)
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        server_socket.bind((HOST, PORT))
+        server_socket.listen(1)
+        server_socket.settimeout(1.0)  # Allow periodic checking for shutdown
 
         connection_status = "waiting"
         print(f"Waiting for PC connection on port {PORT}...")
         
-        conn, addr = server.accept()
-        print(f"Connected to {addr}")
-
-        connected = True
-        connection_status = "connected"
-
-        threading.Thread(target=receive_messages, args=(conn,), daemon=True).start()
+        while not connected:
+            try:
+                conn, addr = server_socket.accept()
+                print(f"Connected to {addr}")
+                connected = True
+                connection_status = "connected"
+                threading.Thread(target=receive_messages, args=(conn,), daemon=True).start()
+            except socket.timeout:
+                continue  # Keep waiting
+            except OSError:
+                break  # Socket was closed
 
     except Exception as e:
         print(f"Connection failed: {e}")
@@ -78,9 +84,4 @@ def start_connection():
         print("Already waiting for connection")
         return
 
-    # Start connection listener in background thread
     threading.Thread(target=_connection_listener, daemon=True).start()
-
-
-# Auto-start connection listener when module is imported
-start_connection()

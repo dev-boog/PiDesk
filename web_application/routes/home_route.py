@@ -42,4 +42,4 @@ def update_weather():
             '''
     except Exception as e:
         print(f"Weather API error: {e}")
-    pass    
+    pass
